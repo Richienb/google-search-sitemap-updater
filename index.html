@@ -10,8 +10,8 @@
 
     <title>Google Search Sitemap Updater</title>
     <meta name="description" content="A simple tool that lets you request a Google Search sitemap recrawl.">
-    
-    <link rel="shortcut icon" href="favicon.ico"/>
+
+    <link rel="shortcut icon" href="favicon.ico" />
 
     <link rel='stylesheet' href='https://unpkg.com/material-components-web@0.41.1/dist/material-components-web.min.css'>
 
@@ -93,34 +93,32 @@
     <script>
         window.mdc.autoInit();
 
-        function popitup(url, windowName) {
-            newwindow = window.open(url, windowName, "height=1,width=1");
-            newwindow.onload = newwindow.close();
-            window.focus();
-        }
-
         var dialog_success = new mdc.dialog.MDCDialog(
-            document.querySelector(".mdc-dialog-success"));
+            document.querySelector(".mdc-dialog-success")
+        );
 
-        document.
-        getElementById("sitemap-url-textbox").
-        addEventListener("keyup", function(e) {
-            if (e.keyCode == 13) {
-                document.getElementById("recrawl-sitemap-button").click();
-            }
-        });
+        document
+            .getElementById("sitemap-url-textbox")
+            .addEventListener("keyup", function(e) {
+                if (e.keyCode == 13) {
+                    document.getElementById("recrawl-sitemap-button").click();
+                }
+            });
 
-        document.
-        getElementById("sitemap-update-form").
-        addEventListener("submit", function(evt) {
-            evt.preventDefault();
-            popitup(
-                "https://www.google.com/ping?sitemap=" +
-                document.getElementById("sitemap-url-textbox").value,
-                "Updating Sitemap");
-
-            dialog_success.open();
-        });
+        document
+            .getElementById("sitemap-update-form")
+            .addEventListener("submit", function(evt) {
+                evt.preventDefault();
+                newwindow = window.open(
+                    "https://www.google.com/ping?sitemap=" +
+                    document.getElementById("sitemap-url-textbox").value,
+                    "Updating Sitemap",
+                    "height=1,width=1"
+                );
+                newwindow.onload = newwindow.close();
+                window.focus();
+                dialog_success.open();
+            });
     </script>
 
 </body>
